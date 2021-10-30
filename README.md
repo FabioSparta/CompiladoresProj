@@ -1,9 +1,14 @@
 # Este projeto foi desenvolvido por:
   > Alexandra---Carvalho-----93346  
+  
   > Anthony-----Pereira-----93016
+  
   > Fabio-------Carmelino-----9340
+  
   > João--------Soares-----93078
+  
   > Pedro-------Iglésias---89318
+  
   > Pedro-------Marques----89069
 
 ## Notes:
