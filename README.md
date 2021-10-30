@@ -43,8 +43,8 @@
   > 
   > \---javac 'Output.java'------------------>Compila o ficheiro java
   > 
-  \---java 'Output'------------------------>Corre o ficheiro java
+  > \---java 'Output'------------------------>Corre o ficheiro java
   
-  \---rm 'testsGrammar1.txt'--------------->Remove o ficheiro copiado
+  > \---rm 'testsGrammar1.txt'--------------->Remove o ficheiro copiado
   
-  cd './..'-------------------------------->Volta à pasta anterior
+  > cd './..'-------------------------------->Volta à pasta anterior
