@@ -1,0 +1,21 @@
+config << enigma ("map1.txt");
+config << enigma ("map1.txt","map2.txt");
+config << enigma ("map1.txt","map2.txt","map3.txt");
+
+(str) hello << "hello";
+
+file File << open ( "ExistsFile.txt" ) to (READ);
+file encodedFile << open ( "NotExistsFile.txt" ) to (WRITE);
+file decodedFile << open ( "GoingToExist.txt" ) to (WRITE);
+
+hello << encode(hello);
+encodedFile << encode(File);
+
+show >> hello;
+show >> encodedFile;
+
+hello << decode(hello);
+decodedFile << decode(encodedFile);
+
+show >> hello;
+show >> decodedFile;

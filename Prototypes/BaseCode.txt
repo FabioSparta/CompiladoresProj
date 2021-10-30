@@ -1,0 +1,81 @@
+//Definição de variáveis
+(type) mensagem << "Esta mensagem vai ser ";
+dict[type, type] dicionario << {'key': 'value'};
+list[type] lista << ['item1', 'item2', 'item3'];
+file txt << open(name) to(operation);
+
+//Condições
+if(condição) then{
+	//code
+}else if(condicao) then{
+	//code
+}else then{
+	//code
+}
+switch(quero verificar) {
+	(isto):
+		//NO NEED FOR BREAK HERE
+	(isto):
+		//NO NEED FOR BREAK HERE
+	default:
+}
+//Boleanos
+true and true
+true and false
+false or true
+false or false
+
+//funções
+function name uses type var,... returns type{
+	//code
+	returns var;
+} 
+
+//Iteracoes
+for(var i in (range/list)) do{
+	//code
+} 
+
+for (var i in (range/list) jump number) do{
+	//code jumping i+number after each iteration
+}
+number can be [-infinity to +infinity]
+
+while(condition) do{
+	//code
+}
+
+//Interações
+show >> var;
+show >> "%d".format(var);
+//sao comentarios 
+//{ 	
+	sao comentarios multilinha
+}
+
+//exemplo de main
+
+function encript uses str line returns str{
+	str encriptedLine = AES(line, generateKey(32), "CBC", generateIV(16)); //idk :p
+	return encriptedLine;
+}
+
+
+file test = open("testfile.txt") to("read");
+list[str] fileLines = [];
+for(str line in test) do{
+	fileLines.append(line);
+}
+
+if(fileLines[0] == "Pedro") then{
+	encript(fileLines[0]);
+}else then{
+	show >> "\nNot Pedro :(";
+}
+
+
+
+
+
+
+

@@ -1,0 +1,101 @@
+(str) hello << "hello";
+dict[integer, str] dicionario << {2: "value"};
+(integer) um;
+(real) doispontozero;
+um << 1;
+list[real] numeros_reais << [4.0,5.0,6.0];
+list[str] strings << ["ola", "bom", "dia"];
+file ficheiro << open("abreistotxt");
+(str) nomeficheiro << "nomedoficheiroeese";
+file ficheiro2 << open(nomeficheiro);
+
+(str) fileContent;
+fileContent << ficheiro READ;
+hello >> ficheiro2 WRITE;
+(integer) fileBytes;
+(integer) bytes << 1010101010100011;
+fileBytes << ficheiro2 READB;
+bytes >> ficheiro WRITEB;
+
+(integer) valor1 << 2;
+(integer) valor2 << 4;
+if (valor1>valor2) then {
+show >> valor1;
+} else if (valor1=valor2) then {
+show >> valor2;
+} else then {
+show >> um;
+};
+
+while (um<10) do {
+show >> um;
+um << um + 1;
+};
+
+do while (um<10) {
+show >> um;
+um << um + 1;
+};
+
+switch(um){
+(1): show >> um;
+(2): show >> valor1;
+(3): show >> valor2;
+("abc"): show >> "abc";
+(2.0): show >> 2.0;
+default: show >> "mynameisJEFF";
+};
+
+function letsprintavalue uses integer valor1{
+show >> valor1;
+};
+
+function letsreturnavalue uses integer valor1 returns integer{
+returns valor1;
+};
+
+function comparevalues uses integer valor1, integer valor2 returns integer{
+if (valor1>valor2) then {
+returns valor1;
+} else if (valor1=valor2) then {
+returns 0;
+} else then {
+returns valor2;
+};
+};
+
+for(var (integer) x << 1 in 5 jump 2) do{
+show >> x*2;
+};
+
+for(var (integer) y in (1,10)) do{
+show >> y/4; # dá print 
+};
+
+(integer) z;
+for(var z in 100 jump 2) do{
+show >> z;
+};
+
+(integer) w << 2;
+for(var w in 100 jump 2) do{
+show >> w;
+};
+
+for(var (str) y in strings) do{
+show >> y; # dá print 
+};
+
+# isto é um comment
+#{
+isto é um comentário multilinh
+com
+várias 
+linhas
+mesmo
+duvidaste alguma vez?
+}
+
+show >> valor1;
+
+

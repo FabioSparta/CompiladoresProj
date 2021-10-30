@@ -1,0 +1,28 @@
+Programa em java para Encriptação e Desencriptação:
+
+O nosso programa de encriptação foi baseado no ENIGMA que foi  utilizado 
+pela Alemanha durante a  Segunda Guerra Mundial. 
+Nessa época eles usavam  uma máquina com vários rotores que faziam troca direta 
+de cada caratér par um outro caratér durante a encriptação. Devendo a pessoa
+que desencriptar a mensagem saber quais os rotores que foram usados ao 
+encriptar para assim poder usar os mesmos na desencriptação.
+
+Na nossa versão para simular esta ideia começámos por criar ficheiros que têm mapas que vão ter um papel semelhante aos rotores.
+
+Para criar esses mapas,  fizémos um programa chamado "MapaGenerator"  que vai gerar 2 arrays de números entre 1  e 128 
+(valores do ASCII Code) e atrávez de um 'ciclo for' alterar aleatóriamente a ordem de um dos arrays.De seguida, com outro 'ciclo for'
+convertemos cada um números de decimal para binário
+e escrevemo-los num ficheiro no formato 
+ " <arr1[i]>  <"-"> <arr2[i]> " (por exemplo:00000011-00001111 ), ou seja, quando esse mapa for utilizado(carregado para um HashMap em java), 
+ um dos valores de cada linha será usado como 'chave' e o outro como 'valor'. Permitindo fazer desse modo uma troca direta de um caratér para outro caratér.
+
+
+Neste programa existem 2 Métodos principais que vão ser chamados pela nossa gramática. Um método encrypt() e um método decrypt().Além disso, existem ainda
+várias funções métodos aos quais o nossos 2 métodos principais recorrem.
+
+" FileToMap(HashMap<String, String> map, String choosenmap,boolean reverse) " 
+- Na encriptação este método utiliza boolean reverse com valor falso e lê cada um dos
+ mapas(ficheiros) escolhidos pelo utilizador e carrega-os para HashMaps utilizando cada valor á esquerda do ifan como 'key' e cada valor á direita como 'value'. 
+ - Na desencriptação este método utiliza boolean reverse com valor true e lê cada um dos 
+ mapas referidos na primeira linha do ficheiro encriptado (quando se encripta, a primeira linha não é encriptada e tem um expressão do tipo "1-2-3" para quem 
+ quiser desencriptar saber quais mapas tem de usar) e carrega-os para HashMaps utilizando cada valor á esquerda do ifan  desta vez como 'value' e cada valor á direita como key

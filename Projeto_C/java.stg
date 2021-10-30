@@ -1,0 +1,295 @@
+// Dictionaries
+
+booleanValue ::= [
+   "true":"true",
+   "false":"false",
+   default:"null"
+]
+
+
+
+typeValue ::= [
+   "integer":"int",
+   "real":"double",
+   "boolean":"boolean",
+   "str":"String",
+   "bytes":"byte[]",
+   default:"null"
+]
+
+typeExtendedValue ::= [
+   "integer":"Integer",
+   "real":"Double",
+   "boolean":"Boolean",
+   "str":"String",
+   "bytes":"Byte",
+   default:"null"
+]
+
+
+typeFormat ::= [
+   "integer":"",
+   "real":"",
+   "boolean":"",
+   default:"null"
+]
+
+
+//Templates
+
+
+module(name,stat,function) ::= 
+<<
+import java.util.*;
+import java.io.*;
+public class <name>{
+   public static void main(String[] args){
+      <stats(stat)>
+   }
+
+   <stats(function)>
+}
+>>
+
+fuCall(class,cript,content) ::=
+<<
+<class>.<cript>(<content>)
+>>
+
+init(class,name) ::=
+<<
+<class> <name> = new <class>();
+>>
+
+stats(stat) ::= 
+<<
+<if(stat)><stat; separator="\n"><endif>
+>>
+
+decl(stat,type,var,value) ::= 
+<<
+<stats(stat)>
+<typeValue.(type)> <if(value)>   <value>  <else> <var>;    <endif> 
+>>
+
+assg(var,value) ::= 
+<<
+<var> = <value>;
+>>
+
+
+assgC(var,arg,arg2,add) ::=
+<<
+<var>.put("<arg>","<arg2>");
+<stats(add)>
+>>
+
+declC(stat,type1,type2,var,add) ::=
+<<
+<stats(stat)>
+HashMap\<<typeExtendedValue.(type1)>,<typeExtendedValue.(type2)>\> <var> = new HashMap\<<typeExtendedValue.(type1)>,<typeExtendedValue.(type2)>\>();
+<stats(add)>
+>>
+
+
+
+
+
+
+
+expr(stat) ::=
+<<
+(<stat>)
+>>
+
+print(value) ::= 
+<<
+System.out.println(<value>);
+>>
+printArrs(value) ::=
+<<
+System.out.println(Arrays.toString(<value>));
+>>
+
+if(stat_before,condition,stat_in) ::=
+<<
+<stats(stat_before)>
+if(<condition>){
+<stats(stat_in)>
+}
+>>
+
+
+elif(stat_before,condition,stat_in) ::=
+<<
+<stats(stat_before)>
+else if(<condition>){
+<stats(stat_in)>
+}
+>>
+
+else(stat_before,stat_in) ::=
+<<
+<stats(stat_before)>
+else{
+<stats(stat_in)>
+}
+>>
+
+
+whileDo(stat_before,condition,stat_in) ::=
+<<
+<stats(stat_before)>
+while(<condition>){
+   <stats(stat_in)>
+}
+>>
+
+doWhile(stat_before,condition,stat_in) ::=
+<<
+<stats(stat_before)>
+do {
+   <stats(stat_in)>
+} while (<condition>);
+>>
+
+switchS(stat,var,case,defaulter) ::=
+<<
+<stats(stat)>
+switch(<var>){
+<if(case)><stats(case)><endif>
+<if(defaulter)><stats(defaulter)><endif>
+}
+>>
+
+caseS(previousCases,var,stat_in) ::=
+<<
+<if(previousCases)><stats(previousCases)><endif>
+case <var>:
+   <stats(stat_in)>
+   break;
+>>
+
+
+defaultS(stat_in) ::=
+<<
+default:
+   <stats(stat_in)>
+>>
+
+function(stat_before,name,arg,returnType,stat_in) ::=
+<<
+<stats(stat_before)>
+public static <if(returnType)><typeValue.(returnType)><else>void<endif> <name>(<arg>){
+   <stats(stat_in)>
+}
+>>
+
+input(sep, argType,arg) ::=
+<<
+<sep><typeValue.(argType)> <arg>
+>>
+
+
+fileDecl(stat,var,path) ::=
+<<
+<stats(stat)>
+File <var> = new File(<path>);
+try {
+   <var>.createNewFile();
+} catch (IOException e) {
+   System.out.println("An error occurred.");
+   e.printStackTrace();
+}
+>>
+
+
+readOpr(stat,var,fileName) ::=
+<<
+<stats(stat)>
+try(FileInputStream temp = new FileInputStream(<fileName>)){
+   byte filecount[] = new byte[(int)<fileName>.length()];
+   temp.read(filecount);
+   <var> = new String(filecount);
+}catch (Exception e){
+   System.out.println(e);
+}
+>>
+
+writeOpr(stat,var,fileName) ::=
+<<
+<stats(stat)>
+try(FileOutputStream temp = new FileOutputStream(<fileName>)){
+   byte[] myBytes = <var>.getBytes();
+   temp.write(myBytes);
+} catch (Exception e){
+   System.out.println(e);
+}
+>>
+readbOpr(stat,var,fileName) ::=
+<<
+<stats(stat)>
+try(FileInputStream temp = new FileInputStream(<fileName>)){
+   <var> = new byte[(int)<fileName>.length()];
+   temp.read(<var>);
+}catch (Exception e){
+   System.out.println(e);
+}
+>>
+writebOpr(stat,var,fileName) ::=
+<<
+<stats(stat)>
+try(FileOutputStream temp = new FileOutputStream(<fileName>)){
+   temp.write(<var>);
+} catch (Exception e){
+   System.out.println(e);
+}
+>>
+
+
+list(stat,type,var,add) ::=
+<<
+<stats(stat)>
+ArrayList\<<typeExtendedValue.(type)>\> <var> = new ArrayList\<<typeExtendedValue.(type)>\>();
+<stats(add)>
+>>
+
+
+addArg(name,arg,arg2) ::=
+<<
+<if(arg2)>
+<name>.put(<arg>,<arg2>);
+<else>
+<name>.add(<arg>);
+<endif>
+
+>>
+
+dict(stat,type1,type2,var,add) ::=
+<<
+<stats(stat)>
+HashMap\<<typeExtendedValue.(type1)>,<typeExtendedValue.(type2)>\> <var> = new HashMap\<<typeExtendedValue.(type1)>,<typeExtendedValue.(type2)>\>();
+<stats(add)>
+>>
+
+printf(stat,value,vars) ::= 
+<<
+<stats(stat)>
+System.out.printf(<value>,<vars>);
+>>
+
+rangeforloop(stat_before,comparison,var,value,max,jump,stat_in) ::=
+<<
+<stats(stat_before)>
+for(int <var> = <value>; <var> <comparison> <max>; <var> = <var> + <jump>){
+   <stats(stat_in)>
+}
+>>
+
+rangeloop(stat_before,type,var,value,max,jump,stat_in) ::=
+<<
+<stats(stat_before)>
+for(<typeValue.(type)> <var> : <value>){
+   <stats(stat_in)>
+}
+>>

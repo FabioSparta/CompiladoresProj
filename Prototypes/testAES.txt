@@ -1,0 +1,19 @@
+config << AES ("CBC", 192, 64);
+
+(str) hello << "hello";
+
+file File << open ( "ExistsFile.txt" ) to (READ);
+file encodedFile << open ( "NotExistsFile.txt" ) to (WRITE);
+file decodedFile << open ( "GoingToExist.txt" ) to (WRITE);
+
+hello << encode(hello);
+encodedFile << encode(File);
+
+show >> hello;
+show >> encodedFile;
+
+hello << decode(hello);
+decodedFile << decode(encodedFile);
+
+show >> hello;
+show >> decodedFile;

@@ -1,0 +1,7 @@
+Problemas que temos:
+
+no stat|stat2 da gramatica isto vai adicionar à main varias cenas do stat e stat2 mas n vai adicionar por ordem this is a BIG problem
+
+O STAT2 N FAZ NADA E DA ERRO NO RUN
+
+PS: estamos a usar testConfig.com para o antlr4-run para testar a encrypt config grammar

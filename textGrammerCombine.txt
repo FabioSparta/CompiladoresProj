@@ -1,0 +1,20 @@
+#Teste exemplo Gramatica 2 e 1 utilizando o algoritmo Enigma
+
+#Encrypt ficheiro ALovePoembyAnonymous.txt
+
+(cypher) c2 << alg: AlgEnigma;
+
+c2.load("AlgEnigma");
+
+(str) content << "";
+file ficheiro << open ("A LovePoembyAnonymous.txt");
+
+READ content << ficheiro;
+
+
+
+c2.encrypt(content);
+
+c2.decrypt(content);
+
+

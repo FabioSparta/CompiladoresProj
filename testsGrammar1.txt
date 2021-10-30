@@ -1,0 +1,120 @@
+#Exemplo 1 _ IMC
+
+(real) height << 1.70;
+(real) weight << 75;
+
+function getIMC  uses real h, real w returns real{
+    returns w/h^2;
+};
+
+show >> "O valor de IMC obtido é " +  getIMC(height,weight);
+
+
+
+
+
+#Exemplo 2 _  Area Codes 
+
+dict [integer, str] phoneCodes << { 351: "Portugal" , 355: "Albania" , 244: "Angola" , 61: "Australia" };
+(integer) userInput << 61;
+
+show >> "O pais correspondente ao código introduzido é " + phoneCodes.get(userInput);
+
+
+
+
+
+
+#Exemplo 3  Numbers lenght  Organizer
+
+list[integer] nums << [ 2, 1500, 3 , 9, 13 , 111 , 15 ,  1000 ];
+list[integer] one_char << [];
+list[integer] two_char << [];
+list[integer] three_char_more << [];
+
+
+for ( var elem in nums )   do{
+    if ( elem <0 ) then { 
+        show >> "Números negativo detetado--> este será ignorado."; 
+    } 
+    else if ( elem < 10) then { 
+        one_char.add(elem);
+    }
+    else if(elem < 100) then { 
+        two_char.add(elem);
+    } 
+    else then { 
+        three_char_more.add(elem);
+    };
+};
+
+
+show >> "Números de length 1";
+for (var elem in one_char) do { show >> elem; };
+
+show >> "Números de length 2";
+for (var elem in two_char ) do { show >> elem; };
+
+show >> "Números de length 3+";
+for (var elem in three_char_more ) do { show >> elem; };
+
+
+
+# While Do Teste
+
+(boolean) Flag << true; 
+(integer) num << 1;
+while(Flag) do {
+
+show >> "Something";
+
+num << num + 1;
+
+if ( num > 2) then {
+
+    Flag << false;
+};
+
+};
+
+#Teste File and bytes tipe
+
+(str) content << "";
+
+file my_file << open("newFile.txt");
+
+WRITE " \n Text File Write" >> my_file;
+READ content << my_file;
+WRITE content + " PASSED!" >> my_file;
+READ content << my_file;
+show >> content;
+
+(bytes) fileBytes << "".getBytes();
+READB fileBytes << my_file;
+show >> Arrays.toString(fileBytes);
+
+# Switch and do while loop Teste
+
+(integer) valueTeste << 3;
+
+do while (valueTeste>0){
+switch(valueTeste){
+    (1): show >> "Número 1";
+        valueTeste << valueTeste-1;
+    (3): show >> "Número 3";
+         valueTeste << valueTeste-2;
+    default: show >> "Número 0";
+};
+};
+
+do while (valueTeste=>-10 and valueTeste * -1 != 10){
+    show >> valueTeste;
+    valueTeste << valueTeste-1;
+};
+
+
+
+
+
+
+

@@ -1,0 +1,7 @@
+(cypher) c2 << alg: AlgTest << k: 0 <<rotor1: 10 << rotor2: 20;
+c2.load("AlgTest");
+(str) msg << "Ok Boomer";
+show >> msg;
+(str) message << c2.encrypt(msg);
+show >> message;
+show >> c2.decrypt(message);
