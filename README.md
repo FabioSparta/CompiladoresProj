@@ -13,7 +13,9 @@
 
 ## Notes:
   > A nossa gramática compila o codigo escrito em codigo java.
+  > 
   > Temos uma gramática Encrypt na pasta Projecto_C que é o compilador.
+  > 
   > Temos uma gramática EncryptConfig que vai ser usada para interpretar a parte do tema do projeto no nosso caso vai ser a parte de encriptação e desencriptação isto é:
     -Ler um algoritmo.
     -Configurar um algoritmo.
